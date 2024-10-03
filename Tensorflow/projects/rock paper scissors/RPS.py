@@ -11,59 +11,59 @@
 #     return guess
 
 
-# def player(prev_play, counter=[0]): # stratigy2, patern: ["P", "P", "R", "R", "S","R", "P", "P", "S", "R"] won murgesh and qunciy
+def player(prev_play, counter=[0]): # stratigy2, patern: ["P", "P", "R", "R", "S","R", "P", "P", "S", "R"] won murgesh and qunciy
 
-#     counter[0] += 1
-#     choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]  #["P", "S", "S", "R", "P", "P", "R", "R", "S"]  got 100% against abbey
-#     return choices[counter[0] % len(choices)]
-
-
-from RPS_game import play
-
-def player(prev_play, counter=[0], opponent_history=[], my_history=[]): # stratigy3: try 40 games to know the player 
-    
     counter[0] += 1
+    choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]  #["P", "S", "S", "R", "P", "P", "R", "R", "S"]  got 100% against abbey
+    return choices[counter[0] % len(choices)]
+
+
+# from RPS_game import play
+
+# def player(prev_play, counter=[0], opponent_history=[], my_history=[]): # stratigy3: try 40 games to know the player 
     
-    if counter[0] <= 40:
+#     counter[0] += 1
     
-        if counter[0] <= 10: # abbey checker
+#     if counter[0] <= 40:
+    
+#         if counter[0] <= 10: # abbey checker
                         
-            # opponent_history.append(prev_play)
-            # choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]
-            # choice =  choices[counter[0] % len(choices)]
+#             # opponent_history.append(prev_play)
+#             # choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]
+#             # choice =  choices[counter[0] % len(choices)]
             
-            # my_history.append(choice[counter[0]])
+#             # my_history.append(choice[counter[0]])
             
-            opponent_history.append(prev_play)
-            choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]
-            choice =  choices[counter[0] % len(choices)]
-            my_history.append(choice) # problem is here
-            print(counter[0], choice)
-            return choice
+#             opponent_history.append(prev_play)
+#             choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]
+#             choice =  choices[counter[0] % len(choices)]
+#             my_history.append(choice) # problem is here
+#             print(counter[0], choice)
+#             return choice
         
-        elif counter[0] > 10 and counter[0] <= 20:  #kris checker
-            pass
+#         elif counter[0] > 10 and counter[0] <= 20:  #kris checker
+#             pass
             
             
-        elif counter[0] > 20 and counter[0] <= 30: #mrugesh checker
-            pass
+#         elif counter[0] > 20 and counter[0] <= 30: #mrugesh checker
+#             pass
         
-        elif counter[0] > 30 and counter[0] <= 40: #quincy checker
-            pass
+#         elif counter[0] > 30 and counter[0] <= 40: #quincy checker
+#             pass
             
+#         print(my_history)
             
-            
-    elif counter[0] == 40: #choose the best
+#     elif counter[0] == 40: #choose the best
         
-        pass
+#         pass
             
             
         
-    else:
-        opponent_history.append(prev_play)
-        choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]
-        choice =  choices[counter[0] % len(choices)]
+#     else:
+#         opponent_history.append(prev_play)
+#         choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]
+#         choice =  choices[counter[0] % len(choices)]
         
-        my_history.append(choice[counter[0]])
-        return choice
+#         my_history.append(choice[counter[0]])
+#         return choice
     

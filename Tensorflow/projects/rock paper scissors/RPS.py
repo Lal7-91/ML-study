@@ -10,15 +10,9 @@
 #         guess = opponent_history[-4]
 #     return guess
 
-
-# def player(prev_play, counter=[0]): 
-
-#     counter[0] += 1
-#     choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]  #["P", "S", "S", "R", "P", "P", "R", "R", "S"]  got 100% against abbey
-#     return choices[counter[0] % len(choices)]
 import random
 
-def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # stratigy3: try 35 games to know the player
+def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # stratigy3: test 35 games to know the player
     
     opponent_history.append(prev_play)
     
@@ -26,7 +20,6 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
     if counter[0] < 34:
         
         win[0] = 0    
-        # print(counter[0])
 
         if counter[0] >= 0 and counter[0] < 10: #mrugesh checker
             
@@ -94,7 +87,7 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
             
             
             if counter[0] == 24:
-                print(f"This is quincy hist:{opponent_history[19:24]}")
+                # print(f"This is quincy hist:{opponent_history[19:24]}")
                 j = 0
                 theo_hist = ['S', 'R', 'R', 'P', 'P']
                    
@@ -124,9 +117,9 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
                 
                 j = 0
                 
-                print(f"This is kirs hist:{opponent_history[25:33]}")
+                # print(f"This is kirs hist:{opponent_history[25:33]}")
                 
-                theo_hist = ['P', 'S', 'R', 'P', 'S', 'R', 'P', 'S']
+                theo_hist = ['R', 'P', 'R', 'P', 'S', 'R', 'P', 'S']
                 for oopPlayer in opponent_history[25:32]:
                     if j > 3:
                         j = j % 3
@@ -134,22 +127,20 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
                         win[0]+= 1
                     j += 1
                         
-                if win[0] == 8:
+                if win[0] == 6:
                     # counter[0] = 40
                     bot[0] = 4
             counter[0]+= 1  
             
-            # print(plays[(counter[0]-25) % 3])    
+            print(plays[(counter[0]-25) % 3])    
             return plays[(counter[0]-25) % 3]
                 
             
             
     if counter[0] == 34:
         
-
         if bot[0] == 1:
             print("Bingo I founded you Murgesh!")
-            
             
         elif bot[0] == 2:
             print("Bingo I founded you Abbey!")
@@ -159,21 +150,25 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
             
         elif bot[0] == 4:
             print("Bingo I founded you kirs!")
+            # print(f"This is kirs hist:{opponent_history[32:35]}")
+
             
         else:
             print("Sorry I am stupid and nothing worked ):")
             
+            
+            
     if counter[0] >= 34 and counter[0] < 999:
 
-        if bot[0] == 1:             # Murgesh statigy           #ERROR
-            choices = ["P", "S", "R"]
+        if bot[0] == 1:             # Murgesh statigy           
+            choices = ["P", "S", "R", "P", "S", "R", "S", "R"]
             counter[0] += 1
             return choices[(counter[0]-35) % len(choices)]  
         
             
         elif bot[0] == 2:                  #abbey stratigy
-            if counter[0] >= 34 and counter[0] < 172:    
-                char_sequence = []     #len is 138
+            if counter[0] >= 34 and counter[0] < 172:  
+                char_sequence = []     #len is 138  
                 if counter[0] == 34:
                     pair_frequencies = {
                         'PS': 8, #all aded 1
@@ -191,8 +186,8 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
 
                     char_sequence = [char for pair in char_sequence for char in pair]
                     
-                    counter[0]+= 1 
-                    return char_sequence[(counter[0]-35) % len(char_sequence)]
+                counter[0]+= 1 
+                return char_sequence[(counter[0]-35) % len(char_sequence)]
             
             else:
                 choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]  #["P", "S", "S", "R", "P", "P", "R", "R", "S"]  got 100% against abbey when
@@ -200,29 +195,29 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
                 return choices[counter[0] % len(choices)]
 
             
-        elif bot[0] == 3:   #quincy statigy
+        elif bot[0] == 3:   #quincy statigy  got 99%
             counter[0] += 1
             choices = ["P", "P", "S", "S", "R"] 
-            return choices[(counter[0]-34) % len(choices)]
+            return choices[(counter[0]-35) % len(choices)]
             
 
             
         elif bot[0] == 4:    #kris statigy
             counter[0] += 1
-            choices = ["S", "R", "P"] 
+            choices = ["R", "P", "S", "R", "P", "S", "R", "P"] 
             return choices[(counter[0]-35) % len(choices)]
         
         else:
-            return random.choice(["S", "R", "P"])
+            choices = ["S","R", "P"]
+            counter[0] += 1
+            return random.choice(choices)
             
 
-    else:
+    else:                         #ERROR
         print(f"{counter[0]}\n")
         counter[0] = 0
-        prev_play = ""
-        opponent_history=[]
+        opponent_history.clear()
         bot[0] = 0
-        # return "P"
         
      
             

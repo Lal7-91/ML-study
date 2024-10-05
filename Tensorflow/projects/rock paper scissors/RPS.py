@@ -12,7 +12,7 @@
 
 import random
 
-def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # stratigy3: test 35 games to know the player
+def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0], char_sequence = []): # stratigy3: test 35 games to know the player
     
     opponent_history.append(prev_play)
     
@@ -115,11 +115,9 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
             
             if counter[0] == 32:
                 
-                j = 0
-                
-                # print(f"This is kirs hist:{opponent_history[25:33]}")
-                
+                j = 0       
                 theo_hist = ['R', 'P', 'R', 'P', 'S', 'R', 'P', 'S']
+                
                 for oopPlayer in opponent_history[25:32]:
                     if j > 3:
                         j = j % 3
@@ -130,9 +128,8 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
                 if win[0] == 6:
                     # counter[0] = 40
                     bot[0] = 4
+                    
             counter[0]+= 1  
-            
-            print(plays[(counter[0]-25) % 3])    
             return plays[(counter[0]-25) % 3]
                 
             
@@ -150,8 +147,6 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
             
         elif bot[0] == 4:
             print("Bingo I founded you kirs!")
-            # print(f"This is kirs hist:{opponent_history[32:35]}")
-
             
         else:
             print("Sorry I am stupid and nothing worked ):")
@@ -166,12 +161,12 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
             return choices[(counter[0]-35) % len(choices)]  
         
             
-        elif bot[0] == 2:                  #abbey stratigy
-            if counter[0] >= 34 and counter[0] < 172:  
-                char_sequence = []     #len is 138  
+        elif bot[0] == 2:                  #abbey stratigy     
+            if counter[0] >= 34 and counter[0] < 188:
+                     #len is 138  
                 if counter[0] == 34:
                     pair_frequencies = {
-                        'PS': 8, #all aded 1
+                        'PS': 8,  # all added +1
                         'PR': 12,
                         'RR': 11,
                         'RP': 8,
@@ -182,20 +177,21 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
                     }
 
                     for pair, count in pair_frequencies.items():
-                        char_sequence.extend([pair] * count)
+                        char_sequence.extend(list(pair) * count) 
 
-                    char_sequence = [char for pair in char_sequence for char in pair]
-                    
-                counter[0]+= 1 
-                return char_sequence[(counter[0]-35) % len(char_sequence)]
-            
+                counter[0] += 1 
+                return char_sequence[(counter[0] - 35) % len(char_sequence)]
+
+                            
             else:
-                choices = ["P", "S", "S", "R", "P", "P", "R", "R", "S"]  #["P", "S", "S", "R", "P", "P", "R", "R", "S"]  got 100% against abbey when
-                counter[0]+= 1                                                                                            # All sequnses equals
-                return choices[counter[0] % len(choices)]
+                if counter[0] == 188: 
+                    print(opponent_history[188])
+                choices = ["R", "P", "P", "R", "R", "S", "P", "S", "S"]       # All sequnses equals
+                counter[0]+= 1                                                                                       
 
+                return choices[(counter[0] - 188) % len(choices)] 
             
-        elif bot[0] == 3:   #quincy statigy  got 99%
+        elif bot[0] == 3:   #quincy statigy  
             counter[0] += 1
             choices = ["P", "P", "S", "S", "R"] 
             return choices[(counter[0]-35) % len(choices)]
@@ -213,18 +209,15 @@ def player(prev_play, counter=[0], opponent_history=[], win=[0], bot=[0]): # str
             return random.choice(choices)
             
 
-    else:                         #ERROR
-        print(f"{counter[0]}\n")
+    else:                        
+        print(f"{counter[0] + 1} games done!\n")
+        prev_play = ""
         counter[0] = 0
-        opponent_history.clear()
         bot[0] = 0
+        opponent_history.clear()
+        char_sequence.clear()
         
      
             
                 
-        
-            
-            
-        
-    
     
